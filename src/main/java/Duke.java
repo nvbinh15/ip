@@ -9,7 +9,7 @@ public class Duke {
         System.out.println("\t" + "What can I do for you?");
         System.out.println("\t" + HORIZONTAL_LINE);
 
-        String[] tasks = new String[100];
+        Task[] tasks = new Task[100];
         int numberOfTasks = 0;
 
         Scanner in = new Scanner(System.in);
@@ -18,11 +18,18 @@ public class Duke {
         while (!line.equals("bye")) {
             System.out.println("\t" + HORIZONTAL_LINE);
             if (line.equals("list")) {
+                System.out.println("\t" + "Here are the tasks in your list:");
                 for (int i = 0; i < numberOfTasks; i++) {
-                    System.out.println("\t" + (i + 1) + ". " + tasks[i]);
+                    System.out.println("\t" + (i + 1) + ". "
+                            + "[" +tasks[i].getStatusIcon() + "] " + tasks[i].description);
                 }
+            } else if (line.startsWith("done")) {
+                System.out.println("\t" + "Nice! I've marked this task as done:");
+                Task currentTask = tasks[Integer.parseInt(line.substring(5)) - 1];
+                currentTask.markAsDone();
+                System.out.println("\t" + "\t" + "[" + currentTask.getStatusIcon() + "] " + currentTask.description);
             } else {
-                tasks[numberOfTasks] = line;
+                tasks[numberOfTasks] = new Task(line);
                 numberOfTasks++;
                 System.out.println("\t" + "added: " + line);
             }
