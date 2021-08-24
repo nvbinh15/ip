@@ -1,20 +1,22 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
         final String HORIZONTAL_LINE = "__________________________________________________";
+        Task[] tasks = new Task[100];
+        int numberOfTasks = 0;
+
+        // Print out the greeting message
         System.out.println("\t" + HORIZONTAL_LINE);
         System.out.println("\t" + "Hello! I'm Duke");
         System.out.println("\t" + "What can I do for you?");
         System.out.println("\t" + HORIZONTAL_LINE);
 
-        Task[] tasks = new Task[100];
-        int numberOfTasks = 0;
-
+        // Read command input from user
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
 
+        // Process and read new command until "bye" is the input
         while (!line.equals("bye")) {
             System.out.println("\t" + HORIZONTAL_LINE);
             if (line.equals("list")) {
@@ -25,7 +27,7 @@ public class Duke {
                 }
             } else if (line.startsWith("done")) {
                 System.out.println("\t" + "Nice! I've marked this task as done:");
-                Task currentTask = tasks[Integer.parseInt(line.substring(5)) - 1];
+                Task currentTask = tasks[Integer.parseInt(line.substring(5).strip()) - 1];
                 currentTask.markAsDone();
                 System.out.println("\t" + "\t" + "[" + currentTask.getStatusIcon() + "] " + currentTask.description);
             } else {
@@ -37,6 +39,7 @@ public class Duke {
             line = in.nextLine();
         }
 
+        // Print out goodbye message
         System.out.println("\t" + HORIZONTAL_LINE);
         System.out.println("\t" + "Bye. Hope to see you again soon!");
         System.out.println("\t" + HORIZONTAL_LINE);
