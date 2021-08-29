@@ -22,8 +22,9 @@ public class Duke {
 
     public static void main(String[] args) {
         printGreeting();
+        Scanner in = new Scanner(System.in);
         while (true) {
-            String userInput = getUserInput();
+            String userInput = getUserInput(in);
             executeCommand(userInput);
         }
     }
@@ -31,10 +32,10 @@ public class Duke {
     /**
      * Reads the text entered by the user.
      *
+     * @param in The Scanner to read user input.
      * @return line Full line entered by the user.
      */
-    private static String getUserInput() {
-        Scanner in = new Scanner(System.in);
+    private static String getUserInput(Scanner in) {
         String line = in.nextLine();
         return line;
     }
@@ -141,7 +142,7 @@ public class Duke {
      * Prints confirm message after adding ToDo, Event, or Deadline.
      */
     private static void printConfirmAdd() {
-        System.out.println("\t" + "Got it. I've added this task: ");
+        System.out.println("\t" + "Got it. I've added this task:");
         System.out.println("\t" + "\t" + tasks[numberOfTasks]);
         numberOfTasks++;
         if (numberOfTasks == 1) {
