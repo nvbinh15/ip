@@ -41,7 +41,7 @@ public class Duke {
     }
 
     /**
-     * Executes the command as specified by the user command.
+     * Executes the command as specified by the user input.
      *
      * @param userInput Raw input from user.
      */
@@ -138,6 +138,18 @@ public class Duke {
         printConfirmAdd();
     }
 
+
+    /**
+     * Executes adding a todo.
+     *
+     * @param commandArgs Processed input arguments from user.
+     */
+    private static void executeAddTodo(String commandArgs) {
+        String description = commandArgs.trim();
+        tasks[numberOfTasks] = new ToDo(description);
+        printConfirmAdd();
+    }
+
     /**
      * Prints confirm message after adding ToDo, Event, or Deadline.
      */
@@ -150,16 +162,6 @@ public class Duke {
         } else {
             System.out.println("\t" + "Now you have " + numberOfTasks + " tasks in the list.");
         }
-    }
-
-    /**
-     * Executes adding a todo
-     *
-     * @param commandArgs Processed input arguments from user.
-     */
-    private static void executeAddTodo(String commandArgs) {
-        tasks[numberOfTasks] = new ToDo(commandArgs);
-        printConfirmAdd();
     }
 
     /**
