@@ -25,6 +25,7 @@ public class Ui {
      * Prints the goodbye message to standard output.
      */
     public static void printGoodBye() {
+        System.out.println("\t" + HORIZONTAL_LINE);
         System.out.println("\t" + "Bye. Hope to see you again soon!");
         System.out.println("\t" + HORIZONTAL_LINE);
     }
@@ -33,6 +34,7 @@ public class Ui {
      * Prints confirm message after adding ToDo, Event, or Deadline.
      */
     public static void printConfirmAdd(Task task, int numberOfTasks) {
+        System.out.println("\t" + HORIZONTAL_LINE);
         System.out.println("\t" + "Got it. I've added this task:");
         System.out.println("\t" + "\t" + task);
         if (numberOfTasks == 0) {
@@ -43,11 +45,24 @@ public class Ui {
     }
 
     /**
-     * Prints the result message to standard output after executing commands.
+     * Prints confirm message after marking a task as done.
      *
-     * @param message Message to show to the user
+     * @param task The task to be marked as done.
      */
-    public static void printMessage(String message) {
+    public static void printConfirmMarkDone(Task task) {
+        System.out.println("\t" + HORIZONTAL_LINE);
+        System.out.println("\t" + "Nice! I've marked this task as done:");
+        System.out.println("\t" + "\t" + task);
+    }
+
+    /**
+     * Prints exception message.
+     *
+     * @param message The exception message.
+     */
+    public static void printException(String message) {
+        System.out.println("\t" + HORIZONTAL_LINE);
         System.out.println(message);
+        System.out.println("\t" + HORIZONTAL_LINE);
     }
 }
