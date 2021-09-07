@@ -1,5 +1,10 @@
 package duke;
 
+import duke.exceptions.DukeException;
+import duke.exceptions.EmptyTaskException;
+import duke.exceptions.IllegalDeadlineException;
+import duke.exceptions.IllegalEventException;
+
 public class ExceptionHandler {
 
     private static Ui ui = new Ui();
