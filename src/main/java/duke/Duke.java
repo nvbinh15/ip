@@ -4,20 +4,23 @@ import duke.exceptions.DukeException;
 import duke.exceptions.EmptyTaskException;
 import duke.exceptions.IllegalDeadlineException;
 import duke.exceptions.IllegalEventException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
+import static duke.constants.CommandConstants.COMMAND_ADD_TODO;
+import static duke.constants.CommandConstants.COMMAND_ADD_EVENT;
+import static duke.constants.CommandConstants.COMMAND_ADD_DEADLINE;
+import static duke.constants.CommandConstants.COMMAND_MARK_DONE;
+import static duke.constants.CommandConstants.COMMAND_LIST;
+import static duke.constants.CommandConstants.COMMAND_EXIT;
 
 import java.util.Scanner;
 
 public class Duke {
 
     private static final String HORIZONTAL_LINE = "__________________________________________________";
-
-    private static final String COMMAND_ADD_DEADLINE = "deadline";
-    private static final String COMMAND_ADD_EVENT = "event";
-    private static final String COMMAND_ADD_TODO = "todo";
-
-    private static final String COMMAND_LIST = "list";
-    private static final String COMMAND_MARK_DONE = "done";
-    private static final String COMMAND_EXIT = "bye";
 
     private static final String PREFIX_BY_DEADLINE = "/by";
     private static final String PREFIX_TIME_EVENT = "/at";

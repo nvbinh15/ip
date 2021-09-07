@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.Task;
+
 public class Ui {
 
     private final static String LOGO = "\t" + " ____        _\n"
