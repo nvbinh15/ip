@@ -1,11 +1,10 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Duke {
 
     private static final String HORIZONTAL_LINE = "__________________________________________________";
-
-    private static final String PREFIX_BY_DEADLINE = "/by";
-    private static final String PREFIX_TIME_EVENT = "/at";
 
     private static final String COMMAND_ADD_DEADLINE = "deadline";
     private static final String COMMAND_ADD_EVENT = "event";
@@ -15,13 +14,18 @@ public class Duke {
     private static final String COMMAND_MARK_DONE = "done";
     private static final String COMMAND_EXIT = "bye";
 
+    private static Ui ui = new Ui();
+
+    private static final String PREFIX_BY_DEADLINE = "/by";
+    private static final String PREFIX_TIME_EVENT = "/at";
+
     private static final int MAX_NUMBER_OF_TASKS = 100;
 
     private static Task[] tasks = new Task[MAX_NUMBER_OF_TASKS];
     private static int numberOfTasks = 0;
 
     public static void main(String[] args) {
-        printGreeting();
+        ui.printGreeting();
         Scanner in = new Scanner(System.in);
         while (true) {
             String userInput = getUserInput(in);
@@ -81,7 +85,7 @@ public class Duke {
      * Executes exiting program.
      */
     private static void executeExit() {
-        printGoodBye();
+        ui.printGoodBye();
         System.exit(0);
     }
 
@@ -91,11 +95,13 @@ public class Duke {
      * @param commandArgs Processed input arguments from user.
      */
     private static void executeMarkDone(String commandArgs) {
-        System.out.println("\t" + "Nice! I've marked this task as done:");
         int taskIndex = Integer.parseInt(commandArgs.strip()) - 1;
         Task currentTask = tasks[taskIndex];
         currentTask.markAsDone();
-        System.out.println("\t" + "\t" + currentTask);
+
+        String message = "\t" + "Nice! I've marked this task as done:\n"
+                + "\t" + "\t" + currentTask;
+        ui.printMessage(message);
     }
 
     /**
@@ -122,7 +128,8 @@ public class Duke {
         String description = commandArgs.substring(0, indexOfTimePrefix).trim();
         String time = commandArgs.substring(indexOfTimePrefix + 3).trim();
         tasks[numberOfTasks] = new Event(description, time);
-        printConfirmAdd();
+        ui.printConfirmAdd(tasks[numberOfTasks], numberOfTasks);
+        numberOfTasks++;
     }
 
     /**
@@ -135,7 +142,8 @@ public class Duke {
         String description = commandArgs.substring(0, indexOfByPrefix).trim();
         String by = commandArgs.substring(indexOfByPrefix + 3).trim();
         tasks[numberOfTasks] = new Deadline(description, by);
-        printConfirmAdd();
+        ui.printConfirmAdd(tasks[numberOfTasks], numberOfTasks);
+        numberOfTasks++;
     }
 
 
@@ -147,21 +155,8 @@ public class Duke {
     private static void executeAddTodo(String commandArgs) {
         String description = commandArgs.trim();
         tasks[numberOfTasks] = new ToDo(description);
-        printConfirmAdd();
-    }
-
-    /**
-     * Prints confirm message after adding ToDo, Event, or Deadline.
-     */
-    private static void printConfirmAdd() {
-        System.out.println("\t" + "Got it. I've added this task:");
-        System.out.println("\t" + "\t" + tasks[numberOfTasks]);
+        ui.printConfirmAdd(tasks[numberOfTasks], numberOfTasks);
         numberOfTasks++;
-        if (numberOfTasks == 1) {
-            System.out.println("\t" + "Now you have one task in the list.");
-        } else {
-            System.out.println("\t" + "Now you have " + numberOfTasks + " tasks in the list.");
-        }
     }
 
     /**
@@ -179,21 +174,4 @@ public class Duke {
         }
     }
 
-    /**
-     * Prints the greeting message to standard output.
-     */
-    private static void printGreeting() {
-        System.out.println("\t" + HORIZONTAL_LINE);
-        System.out.println("\t" + "Hello! I'm Duke");
-        System.out.println("\t" + "What can I do for you?");
-        System.out.println("\t" + HORIZONTAL_LINE);
-    }
-
-    /**
-     * Prints the goodbye message to standard output.
-     */
-    private static void printGoodBye() {
-        System.out.println("\t" + "Bye. Hope to see you again soon!");
-        System.out.println("\t" + HORIZONTAL_LINE);
-    }
 }
