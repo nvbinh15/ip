@@ -31,4 +31,8 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    public void removeTaskByIndex(int index) {
+        tasks.remove(index);
+    }
+    
 }

@@ -16,6 +16,7 @@ import static duke.constants.CommandConstants.COMMAND_ADD_DEADLINE;
 import static duke.constants.CommandConstants.COMMAND_MARK_DONE;
 import static duke.constants.CommandConstants.COMMAND_LIST;
 import static duke.constants.CommandConstants.COMMAND_EXIT;
+import static duke.constants.CommandConstants.COMMAND_DELETE;
 
 import static duke.constants.TaskConstants.PREFIX_BY_DEADLINE;
 import static duke.constants.TaskConstants.PREFIX_TIME_EVENT;
@@ -92,6 +93,9 @@ public class Duke {
         case COMMAND_MARK_DONE:
             executeMarkDone(commandArgs);
             break;
+        case COMMAND_DELETE:
+            executeDelete(commandArgs);
+            break;
         case COMMAND_EXIT:
             executeExit();
             break;
@@ -119,6 +123,12 @@ public class Duke {
         Task currentTask = tasks.getTaskByIndex(taskIndex);
         currentTask.markAsDone();
         ui.printConfirmMarkDone(currentTask);
+    }
+
+    private static void executeDelete(String commandArgs) {
+        int taskIndex = Integer.parseInt(commandArgs.strip()) - 1;
+        ui.printConfirmDelete(tasks.getTaskByIndex(taskIndex), tasks.getNumberOfTasks());
+        tasks.removeTaskByIndex(taskIndex);
     }
 
     /**
