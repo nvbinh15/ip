@@ -29,6 +29,7 @@ public class Duke {
 
     private static Ui ui = new Ui();
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
+    private static Storage storage = new Storage();
     private static Parser parser = new Parser();
 
     private static TaskList tasks = new TaskList();
@@ -43,6 +44,7 @@ public class Duke {
      */
     private static void readAndExecuteCommand() throws IOException {
         Scanner in = new Scanner(System.in);
+        tasks.tasks = storage.readDataFromFile();
         while (true) {
             String userInput = getUserInput(in);
             try {
@@ -105,6 +107,7 @@ public class Duke {
      * Executes exiting program.
      */
     private static void executeExit() throws IOException {
+        storage.saveDataToFile(tasks);
         ui.printGoodBye();
         System.exit(0);
     }
