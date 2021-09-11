@@ -84,5 +84,17 @@
 	5. [D][ ] review PRs (by: Thursday)
 	__________________________________________________
 	__________________________________________________
+	Noted. I've removed this task:
+		[D][X] CG2027 assignment 3 (by: 29 Aug)
+	Now you have 4 tasks in the list.
+	__________________________________________________
+	__________________________________________________
+	Here are the tasks in your list:
+	1. [T][ ] complete iP level-4
+	2. [T][X] add text-ui-testing
+	3. [E][X] team meeting (at: Monday)
+	4. [D][ ] review PRs (by: Thursday)
+	__________________________________________________
+	__________________________________________________
 	Bye. Hope to see you again soon!
 	__________________________________________________
