@@ -2,47 +2,53 @@ package duke;
 
 import duke.task.Task;
 
+import static duke.constants.Messages.HORIZONTAL_LINE;
+import static duke.constants.Messages.LOGO;
+import static duke.constants.Messages.MESSAGE_GREETING;
+import static duke.constants.Messages.MESSAGE_GOODBYE;
+import static duke.constants.Messages.MESSAGE_MARK_TASK_DONE;
+import static duke.constants.Messages.LINE_PREFIX;
+
 public class Ui {
-
-    private final static String LOGO = "\t" + " ____        _\n"
-            + "\t" + "|  _ \\ _   _| | _____\n"
-            + "\t" + "| | | | | | | |/ / _ \\\n"
-            + "\t" + "| |_| | |_| |   <  __/\n"
-            + "\t" + "|____/ \\__,_|_|\\_\\___|\n";
-
-    private static final String HORIZONTAL_LINE = "__________________________________________________";
 
     /**
      * Prints the greeting message to standard output.
      */
     public static void printGreeting() {
-        System.out.println("\t" + HORIZONTAL_LINE);
-        System.out.println(LOGO);
-        System.out.println("\t" + "Hello! I'm Duke");
-        System.out.println("\t" + "What can I do for you?");
-        System.out.println("\t" + HORIZONTAL_LINE);
+        printMessage(LOGO + MESSAGE_GREETING);
     }
 
     /**
      * Prints the goodbye message to standard output.
      */
     public static void printGoodBye() {
-        System.out.println("\t" + HORIZONTAL_LINE);
-        System.out.println("\t" + "Bye. Hope to see you again soon!");
-        System.out.println("\t" + HORIZONTAL_LINE);
+        printMessage(MESSAGE_GOODBYE);
     }
 
     /**
      * Prints confirm message after adding ToDo, Event, or Deadline.
      */
     public static void printConfirmAdd(Task task, int numberOfTasks) {
-        System.out.println("\t" + HORIZONTAL_LINE);
-        System.out.println("\t" + "Got it. I've added this task:");
-        System.out.println("\t" + "\t" + task);
-        if (numberOfTasks == 0) {
-            System.out.println("\t" + "Now you have one task in the list.");
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(LINE_PREFIX + "Got it. I've added this task:");
+        System.out.println(LINE_PREFIX + LINE_PREFIX + task);
+        if (numberOfTasks == 1) {
+            System.out.println(LINE_PREFIX + "Now you have one task in the list.");
         } else {
-            System.out.println("\t" + "Now you have " + (numberOfTasks + 1) + " tasks in the list.");
+            System.out.println(LINE_PREFIX + "Now you have " + numberOfTasks + " tasks in the list.");
+        }
+    }
+
+    public static void printConfirmDelete(Task task, int numberOfTasksBeforeDelete) {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(LINE_PREFIX + "Noted. I've removed this task:");
+        System.out.println(LINE_PREFIX + LINE_PREFIX + task);
+        if (numberOfTasksBeforeDelete == 2) {
+            System.out.println(LINE_PREFIX + "Now you have one task in the list.");
+        } else if (numberOfTasksBeforeDelete == 1) {
+            System.out.println(LINE_PREFIX + "Now you have zero task in the list.");
+        } else {
+            System.out.println(LINE_PREFIX + "Now you have " + (numberOfTasksBeforeDelete - 1) + " tasks in the list.");
         }
     }
 
@@ -52,19 +58,19 @@ public class Ui {
      * @param task The task to be marked as done.
      */
     public static void printConfirmMarkDone(Task task) {
-        System.out.println("\t" + HORIZONTAL_LINE);
-        System.out.println("\t" + "Nice! I've marked this task as done:");
-        System.out.println("\t" + "\t" + task);
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(MESSAGE_MARK_TASK_DONE);
+        System.out.println(LINE_PREFIX + LINE_PREFIX + task);
     }
 
     /**
-     * Prints exception message.
+     * Prints message to the standard output.
      *
-     * @param message The exception message.
+     * @param message The message to be printed.
      */
-    public static void printException(String message) {
-        System.out.println("\t" + HORIZONTAL_LINE);
+    public static void printMessage(String message) {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(message);
-        System.out.println("\t" + HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE);
     }
 }

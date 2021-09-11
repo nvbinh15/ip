@@ -5,29 +5,35 @@ import duke.exceptions.EmptyTaskException;
 import duke.exceptions.IllegalDeadlineException;
 import duke.exceptions.IllegalEventException;
 
+import static duke.constants.Messages.*;
+
 public class ExceptionHandler {
 
     private static Ui ui = new Ui();
 
-    private static final String EXCEPTION_DUKE_MESSAGE = "\t" + "OOPS!!! I'm sorry, but I don't know what that means :-(.";
-    private static final String EXCEPTION_EMPTY_TASK_MESSAGE = "\t" + "OOPS!!! The description of a task cannot be empty.";
-    private static final String EXCEPTION_DEADLINE_MESSAGE = "\t" + "OOPS!!! Invalid deadline.";
-    private static final String EXCEPTION_EVENT_MESSAGE = "\t" + "OOPS!!! Invalid event.";
+    /**
+     * Handles duke exceptions.
+     *
+     * @param e Exception of type DukeException thrown by Duke.
+     */
+    public static void handleDukeExceptions(DukeException e) {
+        if (e instanceof IllegalDeadlineException) {
+            ui.printMessage(MESSAGE_INVALID_DEADLINE_EXCEPTION);
+        } else if (e instanceof IllegalEventException) {
+            ui.printMessage(MESSAGE_INVALID_EVENT_EXCEPTION);
+        } else if (e instanceof EmptyTaskException) {
+            ui.printMessage(MESSAGE_EMPTY_TASK_EXCEPTION);
+        } else {
+            ui.printMessage(MESSAGE_DUKE_EXCEPTION);
+        }
+    }
 
     /**
-     * Handles exceptions.
+     * Handles other exceptions.
      *
-     * @param e Exception thrown by Duke.
+     * @param e Exception of other types thrown by Duke.
      */
-    public static void handle(DukeException e) {
-        if (e instanceof IllegalDeadlineException) {
-            ui.printException(EXCEPTION_DEADLINE_MESSAGE);
-        } else if (e instanceof IllegalEventException) {
-            ui.printException(EXCEPTION_EVENT_MESSAGE);
-        } else if (e instanceof EmptyTaskException) {
-            ui.printException(EXCEPTION_EMPTY_TASK_MESSAGE);
-        } else {
-            ui.printException(EXCEPTION_DUKE_MESSAGE);
-        }
+    public static void handleOtherExceptions(Exception e) {
+        System.out.println(MESSAGE_OTHER_EXCEPTION);
     }
 }

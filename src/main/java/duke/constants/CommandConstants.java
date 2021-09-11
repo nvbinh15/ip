@@ -8,6 +8,7 @@ public final class CommandConstants {
 
     public static final String COMMAND_LIST = "list";
     public static final String COMMAND_MARK_DONE = "done";
+    public static final String COMMAND_DELETE = "delete";
     public static final String COMMAND_EXIT = "bye";
 
 }

@@ -1,7 +1,8 @@
 package duke;
 
+import java.io.IOException;
+
 import duke.exceptions.DukeException;
-import duke.exceptions.EmptyTaskException;
 import duke.exceptions.IllegalDeadlineException;
 import duke.exceptions.IllegalEventException;
 import duke.task.Deadline;
@@ -16,24 +17,23 @@ import static duke.constants.CommandConstants.COMMAND_MARK_DONE;
 import static duke.constants.CommandConstants.COMMAND_LIST;
 import static duke.constants.CommandConstants.COMMAND_EXIT;
 
+import static duke.constants.TaskConstants.PREFIX_BY_DEADLINE;
+import static duke.constants.TaskConstants.PREFIX_TIME_EVENT;
+import static duke.constants.Messages.HORIZONTAL_LINE;
+
+import static duke.constants.Messages.MESSAGE_NO_TASK;
+
 import java.util.Scanner;
 
 public class Duke {
 
-    private static final String HORIZONTAL_LINE = "__________________________________________________";
-
-    private static final String PREFIX_BY_DEADLINE = "/by";
-    private static final String PREFIX_TIME_EVENT = "/at";
-
     private static Ui ui = new Ui();
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
+    private static Parser parser = new Parser();
 
-    private static final int MAX_NUMBER_OF_TASKS = 100;
+    private static TaskList tasks = new TaskList();
 
-    private static Task[] tasks = new Task[MAX_NUMBER_OF_TASKS];
-    private static int numberOfTasks = 0;
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ui.printGreeting();
         readAndExecuteCommand();
     }
@@ -41,14 +41,16 @@ public class Duke {
     /**
      * Reads and executes command from user inputs.
      */
-    private static void readAndExecuteCommand() {
+    private static void readAndExecuteCommand() throws IOException {
         Scanner in = new Scanner(System.in);
         while (true) {
             String userInput = getUserInput(in);
             try {
                 executeCommand(userInput);
             } catch (DukeException e) {
-                exceptionHandler.handle(e);
+                exceptionHandler.handleDukeExceptions(e);
+            } catch (Exception e) {
+                exceptionHandler.handleOtherExceptions(e);
             }
         }
     }
@@ -69,8 +71,8 @@ public class Duke {
      *
      * @param userInput Raw input from user.
      */
-    private static void executeCommand(String userInput) throws DukeException {
-        final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
+    private static void executeCommand(String userInput) throws DukeException, IOException {
+        final String[] commandTypeAndParams = parser.splitCommandAndArgs(userInput);
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
 
@@ -96,13 +98,13 @@ public class Duke {
         default:
             throw new DukeException();
         }
-        System.out.println("\t" + HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     /**
      * Executes exiting program.
      */
-    private static void executeExit() {
+    private static void executeExit() throws IOException {
         ui.printGoodBye();
         System.exit(0);
     }
@@ -114,7 +116,7 @@ public class Duke {
      */
     private static void executeMarkDone(String commandArgs) {
         int taskIndex = Integer.parseInt(commandArgs.strip()) - 1;
-        Task currentTask = tasks[taskIndex];
+        Task currentTask = tasks.getTaskByIndex(taskIndex);
         currentTask.markAsDone();
         ui.printConfirmMarkDone(currentTask);
     }
@@ -123,14 +125,14 @@ public class Duke {
      * Executes listing tasks.
      */
     private static void executeList() {
-        System.out.println("\t" + HORIZONTAL_LINE);
-        if (numberOfTasks > 0) {
+        System.out.println(HORIZONTAL_LINE);
+        if (tasks.getNumberOfTasks() > 0) {
             System.out.println("\t" + "Here are the tasks in your list:");
-            for (int i = 0; i < numberOfTasks; i++) {
-                System.out.println("\t" + (i + 1) + ". " + tasks[i]);
+            for (int i = 0; i < tasks.getNumberOfTasks(); i++) {
+                System.out.println("\t" + (i + 1) + ". " + tasks.getTaskByIndex(i));
             }
         } else {
-            System.out.println("\t" + "You don't have any tasks. Add a ToDo, Deadline, or Event.");
+            System.out.println(MESSAGE_NO_TASK);
         }
     }
 
@@ -144,9 +146,8 @@ public class Duke {
         if (indexOfTimePrefix != -1) {
             String description = commandArgs.substring(0, indexOfTimePrefix).trim();
             String time = commandArgs.substring(indexOfTimePrefix + 3).trim();
-            tasks[numberOfTasks] = new Event(description, time);
-            ui.printConfirmAdd(tasks[numberOfTasks], numberOfTasks);
-            numberOfTasks++;
+            tasks.addTask(new Event(description, time));
+            ui.printConfirmAdd(tasks.getTaskByIndex(tasks.getNumberOfTasks() - 1), tasks.getNumberOfTasks());
         } else {
             throw new IllegalEventException();
         }
@@ -162,14 +163,13 @@ public class Duke {
         if (indexOfByPrefix != -1) {
             String description = commandArgs.substring(0, indexOfByPrefix).trim();
             String by = commandArgs.substring(indexOfByPrefix + 3).trim();
-            tasks[numberOfTasks] = new Deadline(description, by);
-            ui.printConfirmAdd(tasks[numberOfTasks], numberOfTasks);
-            numberOfTasks++;
+            tasks.addTask(new Deadline(description, by));
+            ui.printConfirmAdd(tasks.getTaskByIndex(tasks.getNumberOfTasks() - 1), tasks.getNumberOfTasks());
         } else {
             throw new IllegalDeadlineException();
         }
     }
-    
+
     /**
      * Executes adding a todo.
      *
@@ -177,30 +177,8 @@ public class Duke {
      */
     private static void executeAddTodo(String commandArgs) {
         String description = commandArgs.trim();
-        tasks[numberOfTasks] = new ToDo(description);
-        ui.printConfirmAdd(tasks[numberOfTasks], numberOfTasks);
-        numberOfTasks++;
-    }
-
-    /**
-     * Splits raw user input into command word and command arguments.
-     *
-     * @param userInput Raw input from user.
-     * @return a String array of size 2 including the command type and the arguments.
-     */
-    private static String[] splitCommandAndArgs(String userInput) throws EmptyTaskException {
-        final String[] tokens = userInput.trim().split("\\s+", 2);
-        String command = tokens[0];
-        boolean isCommandAdd = command.equals(COMMAND_ADD_DEADLINE) || command.equals(COMMAND_ADD_TODO)
-                || command.equals(COMMAND_ADD_EVENT);
-
-        if (tokens.length == 2) {
-            return tokens;
-        } else if (isCommandAdd) {
-            throw new EmptyTaskException();
-        } else {
-            return new String[] {command, ""};
-        }
+        tasks.addTask(new ToDo(description));
+        ui.printConfirmAdd(tasks.getTaskByIndex(tasks.getNumberOfTasks() - 1), tasks.getNumberOfTasks());
     }
 
 }
