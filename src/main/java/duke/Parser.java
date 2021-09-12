@@ -34,15 +34,15 @@ public class Parser {
         String description = task.getDescription();
         String statusIcon = task.getStatusIcon();
         if (task instanceof Deadline) {
-            prefix = "D";
+            prefix = PREFIX_DEADLINE;
             by = ((Deadline) task).getBy();
             data = prefix + VERTICAL_BAR + statusIcon + VERTICAL_BAR + description + VERTICAL_BAR + by + LINE_SEPARATOR;
         } else if (task instanceof Event) {
-            prefix = "E";
+            prefix = PREFIX_EVENT;
             time = ((Event) task).getTime();
             data = prefix + VERTICAL_BAR + statusIcon + VERTICAL_BAR + description + VERTICAL_BAR + time + LINE_SEPARATOR;
         } else {
-            prefix = "T";
+            prefix = PREFIX_TODO;
             data = prefix + VERTICAL_BAR + statusIcon + VERTICAL_BAR + description + LINE_SEPARATOR;
         }
         return data;

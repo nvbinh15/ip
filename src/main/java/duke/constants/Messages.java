@@ -30,4 +30,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_DEADLINE_EXCEPTION = LINE_PREFIX + "OOPS!!! Invalid deadline.";
     public static final String MESSAGE_INVALID_EVENT_EXCEPTION = LINE_PREFIX + "OOPS!!! Invalid event.";
     public static final String MESSAGE_OTHER_EXCEPTION = LINE_PREFIX + "Something went wrong. Please try again!";
+    public static final String MESSAGE_FILE_NOT_FOUND = LINE_PREFIX + "File not found.";
 }

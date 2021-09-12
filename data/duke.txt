@@ -1,4 +1,5 @@
-T | X | complete iP level-6
-T |   | team meeting
-T | X | CG2027 assignment
 T |   | drink water
+T | X | sleep
+D | X | CG2027 assignment | Sunday
+E |   | CS2113T team meeting | Monday 2pm
+T |   | iP level-7

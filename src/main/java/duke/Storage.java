@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.io.FileWriter;
 
 import static duke.constants.StorageConfig.PATH_TO_STORAGE_FILE;
+import static duke.constants.Messages.MESSAGE_FILE_NOT_FOUND;
 
 public class Storage {
 
@@ -35,7 +36,7 @@ public class Storage {
                 storedTasks.add(task);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            System.out.println(MESSAGE_FILE_NOT_FOUND);
         }
         return storedTasks;
     }
