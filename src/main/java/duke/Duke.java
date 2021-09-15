@@ -82,21 +82,26 @@ public class Duke {
         switch (commandType) {
         case COMMAND_ADD_TODO:
             executeAddTodo(commandArgs);
+            storage.saveDataToFile(tasks);
             break;
         case COMMAND_ADD_DEADLINE:
             executeAddDeadline(commandArgs);
+            storage.saveDataToFile(tasks);
             break;
         case COMMAND_ADD_EVENT:
             executeAddEvent(commandArgs);
+            storage.saveDataToFile(tasks);
             break;
         case COMMAND_LIST:
             executeList();
             break;
         case COMMAND_MARK_DONE:
             executeMarkDone(commandArgs);
+            storage.saveDataToFile(tasks);
             break;
         case COMMAND_DELETE:
             executeDelete(commandArgs);
+            storage.saveDataToFile(tasks);
             break;
         case COMMAND_EXIT:
             executeExit();
@@ -111,7 +116,6 @@ public class Duke {
      * Executes exiting program.
      */
     private static void executeExit() throws IOException {
-        storage.saveDataToFile(tasks);
         ui.printGoodBye();
         System.exit(0);
     }

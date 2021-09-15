@@ -1,5 +1,3 @@
-T |   | drink water
-T | X | sleep
-D | X | CG2027 assignment | Sunday
+T |   | iP Level-7
+D | X | GEQ1000 quiz | Saturday
 E |   | CS2113T team meeting | Monday 2pm
-T |   | iP level-7

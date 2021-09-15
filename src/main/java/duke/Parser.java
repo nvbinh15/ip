@@ -55,10 +55,10 @@ public class Parser {
         String description = tokens[2];
         boolean isDone = (statusIcon.equals(STATUS_ICON_DONE)) ? true : false;
 
-        if (prefix == PREFIX_EVENT) {
+        if (prefix.equals(PREFIX_EVENT)) {
             String time = tokens[3];
             return new Event(description, isDone, time);
-        } else if (prefix == PREFIX_DEADLINE) {
+        } else if (prefix.equals(PREFIX_DEADLINE)) {
             String by = tokens[3];
             return new Deadline(description, isDone, by);
         } else {
