@@ -1,5 +1,8 @@
 package duke.constants;
 
+/**
+ * A class that contains constants related to Commands.
+ */
 public final class CommandConstants {
 
     public static final String COMMAND_ADD_DEADLINE = "deadline";

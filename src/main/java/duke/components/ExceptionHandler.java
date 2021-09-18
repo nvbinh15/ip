@@ -1,12 +1,19 @@
-package duke;
+package duke.components;
 
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyTaskException;
 import duke.exceptions.IllegalDeadlineException;
 import duke.exceptions.IllegalEventException;
 
-import static duke.constants.Messages.*;
+import static duke.constants.Messages.MESSAGE_INVALID_DEADLINE_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_INVALID_EVENT_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_EMPTY_TASK_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_DUKE_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_OTHER_EXCEPTION;
 
+/**
+ * A class that handles exceptions thrown by Duke.
+ */
 public class ExceptionHandler {
 
     private static Ui ui = new Ui();
@@ -31,7 +38,7 @@ public class ExceptionHandler {
     /**
      * Handles other exceptions.
      *
-     * @param e Exception of other types thrown by Duke.
+     * @param e Exception of types other than DukeException thrown by Duke.
      */
     public static void handleOtherExceptions(Exception e) {
         System.out.println(MESSAGE_OTHER_EXCEPTION);

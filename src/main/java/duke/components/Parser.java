@@ -1,31 +1,43 @@
-package duke;
+package duke.components;
 
+import duke.commands.*;
+import duke.exceptions.DukeException;
 import duke.exceptions.EmptyTaskException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import static duke.constants.CommandConstants.COMMAND_ADD_DEADLINE;
-import static duke.constants.CommandConstants.COMMAND_ADD_TODO;
-import static duke.constants.CommandConstants.COMMAND_ADD_EVENT;
+import java.io.IOException;
 
-import static duke.constants.Messages.LINE_SEPARATOR;
-import static duke.constants.Messages.VERTICAL_BAR;
-import static duke.constants.Messages.VERTICAL_BAR_REGEX;
-import static duke.constants.Messages.EMPTY_STRING;
+import static duke.constants.CommandConstants.*;
+import static duke.constants.CommandConstants.COMMAND_EXIT;
 
+import static duke.constants.Messages.*;
 import static duke.constants.TaskConstants.PREFIX_EVENT;
 import static duke.constants.TaskConstants.PREFIX_DEADLINE;
 import static duke.constants.TaskConstants.PREFIX_TODO;
 import static duke.constants.TaskConstants.STATUS_ICON_DONE;
 
+/**
+ * A class that deals with making sense of the user command
+ * and formatting data to stored and retrieved from the storage.
+ */
 public class Parser {
 
+    /**
+     * Class constructor.
+     */
     public Parser() {
 
     }
 
+    /**
+     * Formats a task to be stored in the storage file.
+     *
+     * @param task The task to be formatted.
+     * @return The formatted string representation of task.
+     */
     public static String formatTaskToStore(Task task) {
         String prefix;
         String by;
@@ -48,6 +60,12 @@ public class Parser {
         return data;
     }
 
+    /**
+     * Retrieves a task from the storage file.
+     *
+     * @param data The string representation of the task in the storage file.
+     * @return The task to be retrieved.
+     */
     public static Task retrieveStoredData(String data) {
         String[] tokens = data.split(VERTICAL_BAR_REGEX);
         String prefix = tokens[0];
@@ -55,13 +73,14 @@ public class Parser {
         String description = tokens[2];
         boolean isDone = (statusIcon.equals(STATUS_ICON_DONE)) ? true : false;
 
-        if (prefix.equals(PREFIX_EVENT)) {
+        switch (prefix) {
+        case PREFIX_EVENT:
             String time = tokens[3];
             return new Event(description, isDone, time);
-        } else if (prefix.equals(PREFIX_DEADLINE)) {
+        case PREFIX_DEADLINE:
             String by = tokens[3];
             return new Deadline(description, isDone, by);
-        } else {
+        default:
             return new ToDo(description, isDone);
         }
     }
@@ -71,6 +90,7 @@ public class Parser {
      *
      * @param userInput Raw input from user.
      * @return a String array of size 2 including the command type and the arguments.
+     * @throws EmptyTaskException If the add task command has no task description.
      */
     public static String[] splitCommandAndArgs(String userInput) throws EmptyTaskException {
         String[] tokens = userInput.trim().split("\\s+", 2);
@@ -84,6 +104,38 @@ public class Parser {
             throw new EmptyTaskException();
         } else {
             return new String[] {command, EMPTY_STRING};
+        }
+    }
+
+    /**
+     * Returns a to be executed command based on the raw input from user.
+     *
+     * @param userInput The raw input from user.
+     * @return The command to be executed.
+     * @throws DukeException If there is an exception of type DukeException occurs.
+     */
+    public Command parseCommand(String userInput) throws DukeException {
+        final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
+        final String commandType = commandTypeAndParams[0];
+        final String commandArgs = commandTypeAndParams[1];
+
+        switch (commandType) {
+        case COMMAND_ADD_TODO:
+            return new AddToDoCommand(commandArgs);
+        case COMMAND_ADD_DEADLINE:
+            return new AddDeadlineCommand(commandArgs);
+        case COMMAND_ADD_EVENT:
+            return new AddEventCommand(commandArgs);
+        case COMMAND_LIST:
+            return new ListCommand();
+        case COMMAND_MARK_DONE:
+            return new MarkDoneCommand(commandArgs);
+        case COMMAND_DELETE:
+            return new DeleteCommand(commandArgs);
+        case COMMAND_EXIT:
+            return new ExitCommand();
+        default:
+            throw new DukeException();
         }
     }
 

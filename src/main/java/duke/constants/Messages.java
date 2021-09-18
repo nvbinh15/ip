@@ -1,5 +1,8 @@
 package duke.constants;
 
+/**
+ * A class that contains Messages constants.
+ */
 public class Messages {
 
     public final static String LOGO = "\t" + " ____        _\n"
@@ -24,6 +27,7 @@ public class Messages {
 
     public static final String MESSAGE_NO_TASK = LINE_PREFIX + "You don't have any tasks. Add a ToDo, Deadline, or Event.";
     public static final String MESSAGE_MARK_TASK_DONE = LINE_PREFIX + "Nice! I've marked this task as done:";
+    public static final String MESSAGE_LISTING_TASKS = LINE_PREFIX + "Here are the tasks in your list:";
 
     public static final String MESSAGE_DUKE_EXCEPTION = LINE_PREFIX + "OOPS!!! I'm sorry, but I don't know what that means :-(.";
     public static final String MESSAGE_EMPTY_TASK_EXCEPTION = LINE_PREFIX + "OOPS!!! The description of a task cannot be empty.";

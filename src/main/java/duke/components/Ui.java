@@ -1,6 +1,7 @@
-package duke;
+package duke.components;
 
 import duke.task.Task;
+import java.util.Scanner;
 
 import static duke.constants.Messages.HORIZONTAL_LINE;
 import static duke.constants.Messages.LOGO;
@@ -9,7 +10,28 @@ import static duke.constants.Messages.MESSAGE_GOODBYE;
 import static duke.constants.Messages.MESSAGE_MARK_TASK_DONE;
 import static duke.constants.Messages.LINE_PREFIX;
 
+/**
+ * A lass that deals with interactions with the user.
+ */
 public class Ui {
+
+    /**
+     * Reads the text entered by the user.
+     *
+     * @param in The Scanner to read user input.
+     * @return line Full line entered by the user.
+     */
+    public static String getUserInput(Scanner in) {
+        String line = in.nextLine();
+        return line;
+    }
+
+    /**
+     * Prints the divider HORIZONTAL_LINE.
+     */
+    public static void printLine() {
+        System.out.println(HORIZONTAL_LINE);
+    }
 
     /**
      * Prints the greeting message to standard output.
@@ -27,6 +49,9 @@ public class Ui {
 
     /**
      * Prints confirm message after adding ToDo, Event, or Deadline.
+     *
+     * @param task The task to be added.
+     * @param numberOfTasks Number of tasks after adding the given task.
      */
     public static void printConfirmAdd(Task task, int numberOfTasks) {
         System.out.println(HORIZONTAL_LINE);
@@ -39,6 +64,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints confirm message after delete a task.
+     *
+     * @param task The task to be deleted.
+     * @param numberOfTasksBeforeDelete Number of tasks before delete the given task.
+     */
     public static void printConfirmDelete(Task task, int numberOfTasksBeforeDelete) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(LINE_PREFIX + "Noted. I've removed this task:");

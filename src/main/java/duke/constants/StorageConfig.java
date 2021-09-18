@@ -3,6 +3,9 @@ package duke.constants;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * A class that contains configurations of Storage.
+ */
 public class StorageConfig {
 
     public static final String PROJECT_ROOT = System.getProperty("user.dir");

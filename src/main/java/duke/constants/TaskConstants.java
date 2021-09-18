@@ -1,5 +1,8 @@
 package duke.constants;
 
+/**
+ * A class that contains constants related to Task.
+ */
 public class TaskConstants {
 
     public static final String PREFIX_BY_DEADLINE = "/by";
