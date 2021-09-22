@@ -14,6 +14,11 @@ public class AddDeadlineCommand extends Command {
 
     String commandArgs;
 
+    /**
+     * Class constructor specifying the command arguments.
+     *
+     * @param commandArgs The command arguments.
+     */
     public AddDeadlineCommand(String commandArgs) {
         this.commandArgs = commandArgs;
     }

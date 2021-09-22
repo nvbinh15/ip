@@ -14,6 +14,11 @@ public class AddEventCommand extends Command {
 
     String commandArgs;
 
+    /**
+     * Class constructor specifying the command arguments.
+     *
+     * @param commandArgs The command arguments.
+     */
     public AddEventCommand(String commandArgs) {
         this.commandArgs = commandArgs;
     }

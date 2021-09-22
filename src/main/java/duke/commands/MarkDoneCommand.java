@@ -11,6 +11,11 @@ public class MarkDoneCommand extends Command {
 
     String commandArgs;
 
+    /**
+     * Class constructor specifying the command arguments.
+     *
+     * @param commandArgs The command arguments.
+     */
     public MarkDoneCommand(String commandArgs) {
         this.commandArgs = commandArgs;
     }

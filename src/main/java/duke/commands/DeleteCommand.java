@@ -10,6 +10,11 @@ public class DeleteCommand extends Command {
 
     String commandArgs;
 
+    /**
+     * Class constructor specifying the command arguments.
+     *
+     * @param commandArgs The command arguments.
+     */
     public DeleteCommand(String commandArgs) {
         this.commandArgs = commandArgs;
     }

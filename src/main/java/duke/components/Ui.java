@@ -11,7 +11,7 @@ import static duke.constants.Messages.MESSAGE_MARK_TASK_DONE;
 import static duke.constants.Messages.LINE_PREFIX;
 
 /**
- * A lass that deals with interactions with the user.
+ * A class that deals with interactions with the user.
  */
 public class Ui {
 

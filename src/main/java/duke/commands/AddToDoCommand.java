@@ -11,6 +11,11 @@ public class AddToDoCommand extends Command {
 
     String commandArgs;
 
+    /**
+     * Class constructor specifying the command arguments.
+     *
+     * @param commandArgs The command arguments.
+     */
     public AddToDoCommand (String commandArgs) {
         this.commandArgs = commandArgs;
     }
