@@ -10,12 +10,12 @@
 	__________________________________________________
 	__________________________________________________
 	Got it. I've added this task:
-		[D][ ] CG2027 assignment 3 (by: 29 Aug)
+		[D][ ] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	Now you have one task in the list.
 	__________________________________________________
 	__________________________________________________
 	Here are the tasks in your list:
-	1. [D][ ] CG2027 assignment 3 (by: 29 Aug)
+	1. [D][ ] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	__________________________________________________
 	__________________________________________________
 	OOPS!!! I'm sorry, but I don't know what that means :-(.
@@ -36,7 +36,7 @@
 	__________________________________________________
 	__________________________________________________
 	Here are the tasks in your list:
-	1. [D][ ] CG2027 assignment 3 (by: 29 Aug)
+	1. [D][ ] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	2. [T][ ] complete iP level-4
 	3. [T][X] add text-ui-testing
 	__________________________________________________
@@ -45,7 +45,7 @@
 	__________________________________________________
 	__________________________________________________
 	Got it. I've added this task:
-		[E][ ] team meeting (at: Monday)
+		[E][ ] team meeting (at: Sep 27 2021 14:00)
 	Now you have 4 tasks in the list.
 	__________________________________________________
 	__________________________________________________
@@ -53,47 +53,47 @@
 	__________________________________________________
 	__________________________________________________
 	Got it. I've added this task:
-		[D][ ] review PRs (by: Thursday)
+		[D][ ] review PRs (by: Sep 30 2021 22:00)
 	Now you have 5 tasks in the list.
 	__________________________________________________
 	__________________________________________________
 	Here are the tasks in your list:
-	1. [D][ ] CG2027 assignment 3 (by: 29 Aug)
+	1. [D][ ] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	2. [T][ ] complete iP level-4
 	3. [T][X] add text-ui-testing
-	4. [E][ ] team meeting (at: Monday)
-	5. [D][ ] review PRs (by: Thursday)
+	4. [E][ ] team meeting (at: Sep 27 2021 14:00)
+	5. [D][ ] review PRs (by: Sep 30 2021 22:00)
 	__________________________________________________
 	__________________________________________________
 	OOPS!!! The description of a task cannot be empty.
 	__________________________________________________
 	__________________________________________________
 	Nice! I've marked this task as done:
-		[D][X] CG2027 assignment 3 (by: 29 Aug)
+		[D][X] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	__________________________________________________
 	__________________________________________________
 	Nice! I've marked this task as done:
-		[E][X] team meeting (at: Monday)
+		[E][X] team meeting (at: Sep 27 2021 14:00)
 	__________________________________________________
 	__________________________________________________
 	Here are the tasks in your list:
-	1. [D][X] CG2027 assignment 3 (by: 29 Aug)
+	1. [D][X] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	2. [T][ ] complete iP level-4
 	3. [T][X] add text-ui-testing
-	4. [E][X] team meeting (at: Monday)
-	5. [D][ ] review PRs (by: Thursday)
+	4. [E][X] team meeting (at: Sep 27 2021 14:00)
+	5. [D][ ] review PRs (by: Sep 30 2021 22:00)
 	__________________________________________________
 	__________________________________________________
 	Noted. I've removed this task:
-		[D][X] CG2027 assignment 3 (by: 29 Aug)
+		[D][X] CG2027 assignment 3 (by: Aug 29 2021 23:59)
 	Now you have 4 tasks in the list.
 	__________________________________________________
 	__________________________________________________
 	Here are the tasks in your list:
 	1. [T][ ] complete iP level-4
 	2. [T][X] add text-ui-testing
-	3. [E][X] team meeting (at: Monday)
-	4. [D][ ] review PRs (by: Thursday)
+	3. [E][X] team meeting (at: Sep 27 2021 14:00)
+	4. [D][ ] review PRs (by: Sep 30 2021 22:00)
 	__________________________________________________
 	__________________________________________________
 	Bye. Hope to see you again soon!
