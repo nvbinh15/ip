@@ -9,6 +9,9 @@ import static duke.constants.Messages.MESSAGE_NO_TASK;
 import static duke.constants.Messages.LINE_PREFIX;
 import static duke.constants.Messages.MESSAGE_LISTING_TASKS;
 
+/**
+ * A representation of the command for listing the tasks.
+ */
 public class ListCommand extends Command {
 
     @Override

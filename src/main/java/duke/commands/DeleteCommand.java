@@ -6,6 +6,9 @@ import duke.components.Ui;
 
 import java.io.IOException;
 
+/**
+ * A representation of the command for deleting a task.
+ */
 public class DeleteCommand extends Command {
 
     String commandArgs;
