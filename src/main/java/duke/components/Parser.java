@@ -8,7 +8,8 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static duke.constants.CommandConstants.*;
 import static duke.constants.CommandConstants.COMMAND_EXIT;
@@ -105,6 +106,18 @@ public class Parser {
         } else {
             return new String[] {command, EMPTY_STRING};
         }
+    }
+
+    public static LocalDateTime stringToDateTime(String string) {
+        return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+    }
+
+    public static String dateTimeToString(LocalDateTime dateTime) {
+        return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+    }
+
+    public static String formatDateTime(String rawDateTime) {
+        return dateTimeToString(stringToDateTime(rawDateTime));
     }
 
     /**
