@@ -1,6 +1,14 @@
 package duke.components;
 
-import duke.commands.*;
+import duke.commands.Command;
+import duke.commands.AddDeadlineCommand;
+import duke.commands.AddEventCommand;
+import duke.commands.AddToDoCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkDoneCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyTaskException;
 import duke.task.Deadline;
@@ -8,12 +16,22 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import static duke.constants.CommandConstants.*;
 import static duke.constants.CommandConstants.COMMAND_EXIT;
+import static duke.constants.CommandConstants.COMMAND_FIND;
+import static duke.constants.CommandConstants.COMMAND_LIST;
+import static duke.constants.CommandConstants.COMMAND_DELETE;
+import static duke.constants.CommandConstants.COMMAND_ADD_TODO;
+import static duke.constants.CommandConstants.COMMAND_ADD_EVENT;
+import static duke.constants.CommandConstants.COMMAND_ADD_DEADLINE;
+import static duke.constants.CommandConstants.COMMAND_MARK_DONE;
 
-import static duke.constants.Messages.*;
+import static duke.constants.Messages.VERTICAL_BAR;
+import static duke.constants.Messages.LINE_SEPARATOR;
+import static duke.constants.Messages.EMPTY_STRING;
+import static duke.constants.Messages.VERTICAL_BAR_REGEX;
 import static duke.constants.TaskConstants.PREFIX_EVENT;
 import static duke.constants.TaskConstants.PREFIX_DEADLINE;
 import static duke.constants.TaskConstants.PREFIX_TODO;
@@ -107,6 +125,18 @@ public class Parser {
         }
     }
 
+    public static LocalDateTime stringToDateTime(String string) {
+        return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+    }
+
+    public static String dateTimeToString(LocalDateTime dateTime) {
+        return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+    }
+
+    public static String formatDateTime(String rawDateTime) {
+        return dateTimeToString(stringToDateTime(rawDateTime));
+    }
+
     /**
      * Returns a to be executed command based on the raw input from user.
      *
@@ -132,6 +162,8 @@ public class Parser {
             return new MarkDoneCommand(commandArgs);
         case COMMAND_DELETE:
             return new DeleteCommand(commandArgs);
+        case COMMAND_FIND:
+            return new FindCommand(commandArgs);
         case COMMAND_EXIT:
             return new ExitCommand();
         default:

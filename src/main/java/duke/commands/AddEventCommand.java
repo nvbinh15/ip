@@ -1,5 +1,6 @@
 package duke.commands;
 
+import duke.components.Parser;
 import duke.components.Storage;
 import duke.components.TaskList;
 import duke.components.Ui;
@@ -13,7 +14,13 @@ import static duke.constants.TaskConstants.PREFIX_TIME_EVENT;
 public class AddEventCommand extends Command {
 
     String commandArgs;
+    Parser parser = new Parser();
 
+    /**
+     * Class constructor specifying the command arguments.
+     *
+     * @param commandArgs The command arguments.
+     */
     public AddEventCommand(String commandArgs) {
         this.commandArgs = commandArgs;
     }
@@ -25,7 +32,8 @@ public class AddEventCommand extends Command {
             throw new IllegalEventException();
         }
         String description = commandArgs.substring(0, indexOfTimePrefix).trim();
-        String time = commandArgs.substring(indexOfTimePrefix + 3).trim();
+        String timeInput = commandArgs.substring(indexOfTimePrefix + 3).trim();
+        String time = parser.formatDateTime(timeInput);
         Event toBeAddedEvent = new Event(description, time);
         tasks.addTask(toBeAddedEvent);
         ui.printConfirmAdd(toBeAddedEvent, tasks.getNumberOfTasks());
