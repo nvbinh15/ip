@@ -11,6 +11,9 @@ import java.io.IOException;
 
 import static duke.constants.TaskConstants.PREFIX_TIME_EVENT;
 
+/**
+ * A representation of the command for adding an Event.
+ */
 public class AddEventCommand extends Command {
 
     String commandArgs;

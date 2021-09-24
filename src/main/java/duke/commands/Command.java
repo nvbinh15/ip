@@ -4,7 +4,6 @@ import duke.components.Storage;
 import duke.components.TaskList;
 import duke.components.Ui;
 import duke.exceptions.DukeException;
-import duke.exceptions.IllegalEventException;
 
 /**
  * An abstract representation of Command.

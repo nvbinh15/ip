@@ -8,6 +8,9 @@ import duke.task.Task;
 import static duke.constants.Messages.HORIZONTAL_LINE;
 import static duke.constants.Messages.LINE_PREFIX;
 
+/**
+ * A representation of the command for finding a task.
+ */
 public class FindCommand extends Command {
 
     String keyword;

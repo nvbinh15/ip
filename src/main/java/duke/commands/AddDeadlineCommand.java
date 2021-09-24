@@ -11,6 +11,9 @@ import java.io.IOException;
 
 import static duke.constants.TaskConstants.PREFIX_BY_DEADLINE;
 
+/**
+ * A representation of the command for adding a Deadline.
+ */
 public class AddDeadlineCommand extends Command {
 
     String commandArgs;

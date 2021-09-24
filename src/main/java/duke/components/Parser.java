@@ -125,14 +125,32 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts date and time in string format to a LocalDateTime object.
+     *
+     * @param string Date and time in string format.
+     * @return A LocalDateTime object that represents the given date and time.
+     */
     public static LocalDateTime stringToDateTime(String string) {
         return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
     }
 
+    /**
+     * Converts date and time in LocalDateTime format to a string
+     *
+     * @param dateTime A LocalDateTime object that represents the given date and time.
+     * @return The string representation of the given LocalDateTime object.
+     */
     public static String dateTimeToString(LocalDateTime dateTime) {
         return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
 
+    /**
+     * Formats the user's input date time.
+     *
+     * @param rawDateTime The raw date time from user's input.
+     * @return The string representation of other form of the given date time.
+     */
     public static String formatDateTime(String rawDateTime) {
         return dateTimeToString(stringToDateTime(rawDateTime));
     }

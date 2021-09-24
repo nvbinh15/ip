@@ -7,6 +7,9 @@ import duke.task.ToDo;
 
 import java.io.IOException;
 
+/**
+ * A representation of the command for adding a ToDo.
+ */
 public class AddToDoCommand extends Command {
 
     String commandArgs;

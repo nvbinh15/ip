@@ -7,6 +7,9 @@ import duke.task.Task;
 
 import java.io.IOException;
 
+/**
+ * A representation of the command for marking a task as done.
+ */
 public class MarkDoneCommand extends Command {
 
     String commandArgs;
