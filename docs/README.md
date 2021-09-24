@@ -41,6 +41,18 @@
 
 ## 3. Features
 
+:information_source: **Notes about the command format:**
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+- The `INDEX`
+ used in various commands is a number specifying the order of a task in the list of tasks (1-based). This number can be found on the left of a task after running the `list` command.
+- `DATE` that you input to Duke should follow the `DD-MM-YYYY` format./
+Example: `01/01/2021` represents the date 1 January 2021.
+- `TIME` that you input to Duke should follow the `HHMM` format where `HH` is the hour (0-23) and `MM` is the minute in the hour (0-59).
+Example: `1800` represents the time 6:00pm.
+- Parameters cannot be reordered.
+Example: If the command specifies `event DESCRIPTION /at DATE TIME`, keying in `event /at DATE TIME DESCRIPTION` will result in an invalid command.
+
 ### 3.1. Adding A Task: `todo`, `deadline`, `event`
 
 
@@ -57,8 +69,24 @@
 
 ## 4. Command Summary
 
+**Action** | **Format, Examples**
+|----------|---------------------|
+|**Add**|- `todo DESCRIPTION`</br> Example: `todo drink water`</br>- `deadline DESCRIPTION /by DATE TIME`</br> Example: `deadline iP user guide /by 01-10-2021 2359`</br>- `event DESCRIPTION /at DATE TIME`</br> Example: `event CS2113 team meeting /at 27-09-2021 1400`|
+|**List**|`list`|
+|**Mark As Done**|`done INDEX`</br> Example: `done 2`|
+|**Delete**|`delete INDEX`</br> Example: `delete 1`|
+|**Find**|`find KEYWORD`</br> Example: `find CS2113`|
+|**Exit**|`bye`|
+
 ## 5. FAQ
 
 Below are the answers to some of frequently askes questions about Duke.
 
-**Q:** 
+**Q:** Can I use Duke on different operating systems such as Windows and macOS?\
+**A:** Yes. Duke is compatible with Windows, macOS, and Linus as long as you have Java `11` or above installed in your machine.
+
+**Q:** What will happen to my data if Duke crashed?\
+**A:** Data is saved automatically to `data/duke.txt` whenever you change your tasks. Therefore, your data will be safely saved even though Duke is crashed.
+
+**Q:** Can I exit Duke without using the `bye` command?\
+**A:** Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Duke worry-free.
