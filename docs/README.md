@@ -2,16 +2,16 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [Quick Start](#2-quick-start)
-3. [Features](#3-features)\
+1. [Quick Start](#2-quick-start)
+1. [Features](#3-features)\
 3.1. [Adding A Task: `todo`, `deadline`, `event`](#31-adding-a-task-todo-deadline-event)\
 3.2. [Listing Tasks: `list`](#32-listing-tasks-list)\
 3.3. [Marking A Task As Done: `done`](#33-marking-a-task-as-done-done)\
 3.4. [Deleting A Task: `delete`](#34-deleting-a-task-delete)\
 3.5. [Finding Tasks: `find`](#35-finding-tasks-find)\
 3.6. [Exiting Duke: `bye`](#36-exiting-duke-bye)
-4. [Command Summary](#4-command-summary)
-5. [FAQ](#5-faq)
+1. [Command Summary](#4-command-summary)
+1. [FAQ](#5-faq)
 
 ## 1. Introduction
 
@@ -58,25 +58,101 @@ Example: If the command specifies `event DESCRIPTION /at DATE TIME`, keying in `
 
 ### 3.2. Listing Tasks: `list`
 
+Lists all tasks in Duke with numbering according to the order they are added (1-based index).
+
+Format: `list`
+
+Expected output:
+
+```
+	__________________________________________________
+	Here are the tasks in your list:
+	1. [E][ ] liverpool match (at: Sep 25 2021 21:00)
+	2. [T][ ] ip level-8
+	3. [D][X] moreOOP (by: Oct 01 2021 23:59)
+	4. [D][ ] submit final version ip (by: Oct 01 2021 23:59)
+	__________________________________________________
+```
+
 ### 3.3. Marking A Task As Done: `done`
+
+Marks a task as done.
+
+Format: `done INDEX`
+
+Example: `done 2`
+
+Expected output:
+
+```
+	__________________________________________________
+	Nice! I've marked this task as done:
+		[T][X] ip level-8
+	__________________________________________________
+```
 
 ### 3.4. Deleting A Task: `delete`
 
+Deletes the specified task from the tasks list.
+
+Format: `delete INDEX`
+
+Example: `delete 2`
+
+Expected outcome:
+
+```
+	__________________________________________________
+	Noted. I've removed this task:
+		[T][X] ip level-8
+	Now you have 3 tasks in the list.
+	__________________________________________________
+```
+
+
 ### 3.5. Finding Tasks: `find`
+
+Finds that tasks of which description contains any of the given keywords.
+
+Format: `find KEYWORD`
+
+Example: `find ip`
+
+Expected outcome:
+
+```
+	__________________________________________________
+	Here are the matching tasks in your list:
+	1. [T][X] ip level-8
+	2. [D][ ] submit final version ip (by: Oct 01 2021 23:59)
+	__________________________________________________
+```
+
 
 ### 3.6. Exiting Duke: `bye`
 
+Exits the program.
+
+Format: `exit`
+
+Expected outcome:
+
+```
+	__________________________________________________
+	Bye. Hope to see you again soon!
+	__________________________________________________
+```
 
 ## 4. Command Summary
 
 **Action** | **Format, Examples**
 |----------|---------------------|
-|**Add**|- `todo DESCRIPTION`</br> Example: `todo drink water`</br>- `deadline DESCRIPTION /by DATE TIME`</br> Example: `deadline iP user guide /by 01-10-2021 2359`</br>- `event DESCRIPTION /at DATE TIME`</br> Example: `event CS2113 team meeting /at 27-09-2021 1400`|
-|**List**|`list`|
-|**Mark As Done**|`done INDEX`</br> Example: `done 2`|
-|**Delete**|`delete INDEX`</br> Example: `delete 1`|
-|**Find**|`find KEYWORD`</br> Example: `find CS2113`|
-|**Exit**|`bye`|
+**Add**|- `todo DESCRIPTION`</br> Example: `todo drink water`</br>- `deadline DESCRIPTION /by DATE TIME`</br> Example: `deadline iP user guide /by 01-10-2021 2359`</br>- `event DESCRIPTION /at DATE TIME`</br> Example: `event CS2113 team meeting /at 27-09-2021 1400`
+**List**|`list`
+**Mark As Done**|`done INDEX`</br> Example: `done 2`
+**Delete**|`delete INDEX`</br> Example: `delete 1`
+**Find**|`find KEYWORD`</br> Example: `find CS2113`
+**Exit**|`bye`
 
 ## 5. FAQ
 
