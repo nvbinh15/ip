@@ -15,6 +15,10 @@
 
 ## 1. Introduction
 
+Duke is an **Command Line Interface (CLI) Personal Assistant Chatbot** that helps an user to keep track of tasks. Duke is optimised for those who prefer typing and can type fast.
+
+If you have trouble with keeping track of your todo list, deadlines, and events, Duke can help you manage your tasks by supporting variuos of operations. Jump into the section [2. Quick Start](#2-quick-start) to get started!
+
 ## 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -41,7 +45,7 @@
 
 ## 3. Features
 
-:information_source: **Notes about the command format:**
+**Notes about the command format:**
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.
 - The `INDEX`
@@ -147,11 +151,11 @@ Expected outcome:
 
 **Action** | **Format, Examples**
 |----------|---------------------|
-**Add**|- `todo DESCRIPTION`</br> Example: `todo drink water`</br>- `deadline DESCRIPTION /by DATE TIME`</br> Example: `deadline iP user guide /by 01-10-2021 2359`</br>- `event DESCRIPTION /at DATE TIME`</br> Example: `event CS2113 team meeting /at 27-09-2021 1400`
+**Add**|- `todo DESCRIPTION`<br><br> Example: `todo drink water`<br><br>- `deadline DESCRIPTION /by DATE TIME`<br><br> Example: `deadline iP user guide /by 01-10-2021 2359`<br><br>- `event DESCRIPTION /at DATE TIME`<br><br> Example: `event CS2113 team meeting /at 27-09-2021 1400`
 **List**|`list`
-**Mark As Done**|`done INDEX`</br> Example: `done 2`
-**Delete**|`delete INDEX`</br> Example: `delete 1`
-**Find**|`find KEYWORD`</br> Example: `find CS2113`
+**Mark As Done**|`done INDEX`<br><br> Example: `done 2`
+**Delete**|`delete INDEX`<br><br> Example: `delete 1`
+**Find**|`find KEYWORD`<br><br> Example: `find CS2113`
 **Exit**|`bye`
 
 ## 5. FAQ
