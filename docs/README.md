@@ -15,7 +15,7 @@
 
 ## 1. Introduction
 
-Duke is an **Command Line Interface (CLI) Personal Assistant Chatbot** that helps an user to keep track of tasks. Duke is optimised for those who prefer typing and can type fast.
+Duke is a **Command Line Interface (CLI) Personal Assistant Chatbot** that helps an user to keep track of tasks. Duke is optimised for those who prefer typing and can type fast.
 
 If you have trouble with keeping track of your todo list, deadlines, and events, Duke can help you manage your tasks by supporting variuos of operations. Jump into the section [2. Quick Start](#2-quick-start) to get started!
 
@@ -52,13 +52,60 @@ If you have trouble with keeping track of your todo list, deadlines, and events,
  used in various commands is a number specifying the order of a task in the list of tasks (1-based). This number can be found on the left of a task after running the `list` command.
 - `DATE` that you input to Duke should follow the `DD-MM-YYYY` format./
 Example: `01/01/2021` represents the date 1 January 2021.
-- `TIME` that you input to Duke should follow the `HHMM` format where `HH` is the hour (0-23) and `MM` is the minute in the hour (0-59).
+- `TIME` that you input to Duke should follow the `HHMM` format where `HH` is the hour (00-23) and `MM` is the minute in the hour (00-59).
 Example: `1800` represents the time 6:00pm.
 - Parameters cannot be reordered.
 Example: If the command specifies `event DESCRIPTION /at DATE TIME`, keying in `event /at DATE TIME DESCRIPTION` will result in an invalid command.
 
 ### 3.1. Adding A Task: `todo`, `deadline`, `event`
 
+Adds a task to Duke.
+
+Duke supports 3 types of tasks, namely `todo`, `deadline`, and `event`. Each type is denoted by its prefix (`[T]`, `[D]`, or `[E]`). Task completion is denoted by `[ ]` and `[X]` which indicates the task has not been done or has been done, respectively.
+
+After adding a task to the task list, Duke will automatically save the list to the data file at `YOUR_DUKE_FOLDER/data/duke.txt`.
+
+The command to add each type of task to Duke:
+
+- `todo` - a task with only a description.
+
+    Format: `todo DESCRIPTION`\
+    Example: `todo iP level-8`\
+    Expected outcome:
+    
+    ```
+		__________________________________________________
+		Got it. I've added this task:
+			[T][ ] iP level-8
+		Now you have 2 tasks in the list.
+		__________________________________________________
+    ```
+
+- `deadline` - a task with a description and a deadline.
+
+    Format: `deadline DESCRIPTION /by DATE TIME`\
+    Example: `deadline moreOOP /by 01-10-2021 2359`\
+    Expected outcome:
+    ```
+		__________________________________________________
+		Got it. I've added this task:
+			[D][ ] moreOOP (by: Oct 01 2021 23:59)
+		Now you have 3 tasks in the list.
+		__________________________________________________
+    ```
+    
+- `event` - a task with a description and a date time of the event.
+
+    Format: `event DESCRIPTION /at DATE TIME`\
+    Example: `event CS2113 team meeting /at 27-09-2021 1400`\
+    Expected outcome:
+    ```
+		__________________________________________________
+		Got it. I've added this task:
+			[E][ ] CS2113 team meeting (at: Sep 27 2021 14:00)
+		Now you have 4 tasks in the list.
+		__________________________________________________
+    ```
 
 ### 3.2. Listing Tasks: `list`
 
@@ -66,7 +113,7 @@ Lists all tasks in Duke with numbering according to the order they are added (1-
 
 Format: `list`
 
-Expected output:
+Expected outcome:
 
 ```
 	__________________________________________________
@@ -86,7 +133,7 @@ Format: `done INDEX`
 
 Example: `done 2`
 
-Expected output:
+Expected outcome:
 
 ```
 	__________________________________________________
@@ -94,6 +141,8 @@ Expected output:
 		[T][X] ip level-8
 	__________________________________________________
 ```
+
+After marking a task as done, Duke will save the change to the data file.
 
 ### 3.4. Deleting A Task: `delete`
 
@@ -113,6 +162,7 @@ Expected outcome:
 	__________________________________________________
 ```
 
+After deleting a task, Duke will update the data file correspondingly.
 
 ### 3.5. Finding Tasks: `find`
 
@@ -137,7 +187,7 @@ Expected outcome:
 
 Exits the program.
 
-Format: `exit`
+Format: `bye`
 
 Expected outcome:
 
