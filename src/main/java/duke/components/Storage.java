@@ -53,7 +53,6 @@ public class Storage {
             while (scanner.hasNext()) {
                 Task task;
                 task = parser.retrieveStoredData(scanner.nextLine());
-
                 storedTasks.add(task);
             }
         } catch (FileNotFoundException e) {

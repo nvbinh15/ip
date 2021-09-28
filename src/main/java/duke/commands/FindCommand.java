@@ -6,7 +6,8 @@ import duke.components.Ui;
 import duke.task.Task;
 
 import static duke.constants.Messages.HORIZONTAL_LINE;
-import static duke.constants.Messages.LINE_PREFIX;
+import static duke.constants.Messages.MESSAGE_FOUND_MATCH;
+import static duke.constants.Messages.MESSAGE_NOT_FOUND_MATCH;
 
 /**
  * A representation of the command for finding a task.
@@ -40,7 +41,7 @@ public class FindCommand extends Command {
             Task task = tasks.getTaskByIndex(i);
             if (task.getDescription().contains(this.keyword)) {
                 if (!hasMatch) {
-                    System.out.println(LINE_PREFIX + "Here are the matching tasks in your list:");
+                    System.out.println(MESSAGE_FOUND_MATCH);
                     hasMatch = true;
                 }
                 numberOfMatches++;
@@ -49,7 +50,7 @@ public class FindCommand extends Command {
         }
 
         if (!hasMatch) {
-            System.out.println(LINE_PREFIX + "There is no task in your list.");
+            System.out.println(MESSAGE_NOT_FOUND_MATCH);
         }
     }
 }

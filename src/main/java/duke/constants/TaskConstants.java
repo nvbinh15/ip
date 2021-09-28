@@ -15,4 +15,6 @@ public class TaskConstants {
     public static final String PREFIX_DEADLINE = "D";
     public static final String PREFIX_EVENT = "E";
 
+    public static final String INPUT_DATE_TIME_FORMAT = "dd-MM-yyyy HHmm";
+    public static final String OUTPUT_DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";
 }

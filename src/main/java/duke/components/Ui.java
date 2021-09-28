@@ -4,11 +4,15 @@ import duke.task.Task;
 import java.util.Scanner;
 
 import static duke.constants.Messages.HORIZONTAL_LINE;
-import static duke.constants.Messages.LOGO;
-import static duke.constants.Messages.MESSAGE_GREETING;
-import static duke.constants.Messages.MESSAGE_GOODBYE;
-import static duke.constants.Messages.MESSAGE_MARK_TASK_DONE;
 import static duke.constants.Messages.LINE_PREFIX;
+import static duke.constants.Messages.LOGO;
+import static duke.constants.Messages.MESSAGE_ADDED_TASK;
+import static duke.constants.Messages.MESSAGE_GOODBYE;
+import static duke.constants.Messages.MESSAGE_GREETING;
+import static duke.constants.Messages.MESSAGE_HAVING_ONE_TASK;
+import static duke.constants.Messages.MESSAGE_HAVING_ZERO_TASK;
+import static duke.constants.Messages.MESSAGE_MARK_TASK_DONE;
+import static duke.constants.Messages.MESSAGE_REMOVED_TASK;
 
 /**
  * A class that deals with interactions with the user.
@@ -55,10 +59,10 @@ public class Ui {
      */
     public static void printConfirmAdd(Task task, int numberOfTasks) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(LINE_PREFIX + "Got it. I've added this task:");
+        System.out.println(MESSAGE_ADDED_TASK);
         System.out.println(LINE_PREFIX + LINE_PREFIX + task);
         if (numberOfTasks == 1) {
-            System.out.println(LINE_PREFIX + "Now you have one task in the list.");
+            System.out.println(MESSAGE_HAVING_ONE_TASK);
         } else {
             System.out.println(LINE_PREFIX + "Now you have " + numberOfTasks + " tasks in the list.");
         }
@@ -72,12 +76,12 @@ public class Ui {
      */
     public static void printConfirmDelete(Task task, int numberOfTasksBeforeDelete) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(LINE_PREFIX + "Noted. I've removed this task:");
+        System.out.println(MESSAGE_REMOVED_TASK);
         System.out.println(LINE_PREFIX + LINE_PREFIX + task);
         if (numberOfTasksBeforeDelete == 2) {
-            System.out.println(LINE_PREFIX + "Now you have one task in the list.");
+            System.out.println(MESSAGE_HAVING_ONE_TASK);
         } else if (numberOfTasksBeforeDelete == 1) {
-            System.out.println(LINE_PREFIX + "Now you have zero task in the list.");
+            System.out.println(MESSAGE_HAVING_ZERO_TASK);
         } else {
             System.out.println(LINE_PREFIX + "Now you have " + (numberOfTasksBeforeDelete - 1) + " tasks in the list.");
         }

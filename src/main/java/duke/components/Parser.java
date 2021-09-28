@@ -34,8 +34,10 @@ import static duke.constants.Messages.VERTICAL_BAR;
 import static duke.constants.Messages.LINE_SEPARATOR;
 import static duke.constants.Messages.EMPTY_STRING;
 import static duke.constants.Messages.VERTICAL_BAR_REGEX;
-import static duke.constants.TaskConstants.PREFIX_EVENT;
+import static duke.constants.TaskConstants.INPUT_DATE_TIME_FORMAT;
+import static duke.constants.TaskConstants.OUTPUT_DATE_TIME_FORMAT;
 import static duke.constants.TaskConstants.PREFIX_DEADLINE;
+import static duke.constants.TaskConstants.PREFIX_EVENT;
 import static duke.constants.TaskConstants.PREFIX_TODO;
 import static duke.constants.TaskConstants.STATUS_ICON_DONE;
 
@@ -143,7 +145,7 @@ public class Parser {
      */
     public static LocalDateTime stringToDateTime(String string) throws IllegalDateTimeException {
         try {
-            return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+            return LocalDateTime.parse(string, DateTimeFormatter.ofPattern(INPUT_DATE_TIME_FORMAT));
         } catch (Exception e) {
             throw new IllegalDateTimeException();
         }
@@ -156,7 +158,7 @@ public class Parser {
      * @return The string representation of the given LocalDateTime object.
      */
     public static String dateTimeToString(LocalDateTime dateTime) {
-        return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+        return dateTime.format(DateTimeFormatter.ofPattern(OUTPUT_DATE_TIME_FORMAT));
     }
 
     /**

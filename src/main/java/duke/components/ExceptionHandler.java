@@ -6,11 +6,12 @@ import duke.exceptions.IllegalDateTimeException;
 import duke.exceptions.IllegalDeadlineException;
 import duke.exceptions.IllegalEventException;
 
+import static duke.constants.Messages.HORIZONTAL_LINE;
+import static duke.constants.Messages.MESSAGE_DATE_TIME_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_DUKE_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_EMPTY_TASK_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_INVALID_DEADLINE_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_INVALID_EVENT_EXCEPTION;
-import static duke.constants.Messages.MESSAGE_EMPTY_TASK_EXCEPTION;
-import static duke.constants.Messages.MESSAGE_DUKE_EXCEPTION;
-import static duke.constants.Messages.MESSAGE_DATE_TIME_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_OTHER_EXCEPTION;
 
 /**
@@ -45,6 +46,8 @@ public class ExceptionHandler {
      * @param e Exception of types other than DukeException thrown by Duke.
      */
     public static void handleOtherExceptions(Exception e) {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(MESSAGE_OTHER_EXCEPTION);
+        System.out.println(HORIZONTAL_LINE);
     }
 }
