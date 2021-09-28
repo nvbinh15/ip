@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
 
-import static duke.constants.StorageConfig.PATH_TO_STORAGE_FILE;
+import static duke.constants.Messages.HORIZONTAL_LINE;
 import static duke.constants.Messages.MESSAGE_FILE_NOT_FOUND;
 import static duke.constants.Messages.MESSAGE_STORAGE_EXCEPTION;
+import static duke.constants.StorageConfig.PATH_TO_STORAGE_FILE;
 
 /**
  * A class that deals with loading tasks from the file and saving tasks in the file.
@@ -56,10 +57,12 @@ public class Storage {
                 storedTasks.add(task);
             }
         } catch (FileNotFoundException e) {
+            System.out.println(HORIZONTAL_LINE);
             System.out.println(MESSAGE_FILE_NOT_FOUND);
             return new ArrayList<Task>();
         } catch (StorageException e) {
             createFile();
+            System.out.println(HORIZONTAL_LINE);
             System.out.println(MESSAGE_STORAGE_EXCEPTION);
             return new ArrayList<Task>();
         }
