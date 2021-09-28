@@ -36,4 +36,6 @@ public class Messages {
     public static final String MESSAGE_OTHER_EXCEPTION = LINE_PREFIX + "Something went wrong. Please try again!";
     public static final String MESSAGE_FILE_NOT_FOUND = LINE_PREFIX + "File not found.";
     public static final String MESSAGE_DATE_TIME_EXCEPTION = LINE_PREFIX + "Illegal date time. Please use the DD-MM-YYYY HHMM format!";
+    public static final String MESSAGE_STORAGE_EXCEPTION = LINE_PREFIX + "There is something wrong with the storage file."
+            + NEW_LINE + "A new file has been created to store your tasks.";
 }

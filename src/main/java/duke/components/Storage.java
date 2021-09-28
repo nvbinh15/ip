@@ -1,5 +1,6 @@
 package duke.components;
 
+import duke.exceptions.StorageException;
 import duke.task.Task;
 
 import java.io.File;
@@ -12,6 +13,7 @@ import java.io.FileWriter;
 
 import static duke.constants.StorageConfig.PATH_TO_STORAGE_FILE;
 import static duke.constants.Messages.MESSAGE_FILE_NOT_FOUND;
+import static duke.constants.Messages.MESSAGE_STORAGE_EXCEPTION;
 
 /**
  * A class that deals with loading tasks from the file and saving tasks in the file.
@@ -25,8 +27,11 @@ public class Storage {
      *
      * @throws IOException If there are failed or interrupted I/O operations.
      */
-    private static void createFile() throws IOException {
+    public static void createFile() throws IOException {
         File file = new File(String.valueOf(PATH_TO_STORAGE_FILE));
+        if (file.exists()) {
+            file.delete();
+        }
         file.getParentFile().mkdirs();
         file.createNewFile();
     }
@@ -46,11 +51,18 @@ public class Storage {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
-                Task task = parser.retrieveStoredData(scanner.nextLine());
+                Task task;
+                task = parser.retrieveStoredData(scanner.nextLine());
+
                 storedTasks.add(task);
             }
         } catch (FileNotFoundException e) {
             System.out.println(MESSAGE_FILE_NOT_FOUND);
+            return new ArrayList<Task>();
+        } catch (StorageException e) {
+            createFile();
+            System.out.println(MESSAGE_STORAGE_EXCEPTION);
+            return new ArrayList<Task>();
         }
         return storedTasks;
     }

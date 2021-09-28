@@ -12,6 +12,7 @@ import duke.commands.MarkDoneCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyTaskException;
 import duke.exceptions.IllegalDateTimeException;
+import duke.exceptions.StorageException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -85,22 +86,28 @@ public class Parser {
      * @param data The string representation of the task in the storage file.
      * @return The task to be retrieved.
      */
-    public static Task retrieveStoredData(String data) {
+    public static Task retrieveStoredData(String data) throws StorageException {
         String[] tokens = data.split(VERTICAL_BAR_REGEX);
         String prefix = tokens[0];
         String statusIcon = tokens[1];
         String description = tokens[2];
         boolean isDone = (statusIcon.equals(STATUS_ICON_DONE)) ? true : false;
 
-        switch (prefix) {
-        case PREFIX_EVENT:
-            String time = tokens[3];
-            return new Event(description, isDone, time);
-        case PREFIX_DEADLINE:
-            String by = tokens[3];
-            return new Deadline(description, isDone, by);
-        default:
-            return new ToDo(description, isDone);
+        try {
+            switch (prefix) {
+            case PREFIX_EVENT:
+                String time = tokens[3];
+                return new Event(description, isDone, time);
+            case PREFIX_DEADLINE:
+                String by = tokens[3];
+                return new Deadline(description, isDone, by);
+            case PREFIX_TODO:
+                return new ToDo(description, isDone);
+            default:
+                throw new StorageException();
+            }
+        } catch (Exception e) {
+            throw new StorageException();
         }
     }
 
