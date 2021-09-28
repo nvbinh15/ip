@@ -85,6 +85,7 @@ public class Parser {
      *
      * @param data The string representation of the task in the storage file.
      * @return The task to be retrieved.
+     * @throws StorageException If there is something wrong with the data file.
      */
     public static Task retrieveStoredData(String data) throws StorageException {
         String[] tokens = data.split(VERTICAL_BAR_REGEX);
@@ -138,6 +139,7 @@ public class Parser {
      *
      * @param string Date and time in string format.
      * @return A LocalDateTime object that represents the given date and time.
+     * @throws IllegalDateTimeException If the input date time is invalid.
      */
     public static LocalDateTime stringToDateTime(String string) throws IllegalDateTimeException {
         try {
@@ -153,7 +155,7 @@ public class Parser {
      * @param dateTime A LocalDateTime object that represents the given date and time.
      * @return The string representation of the given LocalDateTime object.
      */
-    public static String dateTimeToString(LocalDateTime dateTime) throws IllegalDateTimeException {
+    public static String dateTimeToString(LocalDateTime dateTime) {
         return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
 
@@ -162,6 +164,7 @@ public class Parser {
      *
      * @param rawDateTime The raw date time from user's input.
      * @return The string representation of other form of the given date time.
+     * @throws IllegalDateTimeException If the input date time is invalid.
      */
     public static String formatDateTime(String rawDateTime) throws IllegalDateTimeException {
         try {

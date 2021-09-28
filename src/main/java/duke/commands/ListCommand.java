@@ -14,6 +14,13 @@ import static duke.constants.Messages.MESSAGE_LISTING_TASKS;
  */
 public class ListCommand extends Command {
 
+    /**
+     * Executes the list command.
+     *
+     * @param tasks The ArrayList of tasks.
+     * @param ui The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println(HORIZONTAL_LINE);

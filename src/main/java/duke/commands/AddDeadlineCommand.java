@@ -30,6 +30,15 @@ public class AddDeadlineCommand extends Command {
         this.commandArgs = commandArgs;
     }
 
+    /**
+     * Executes the add deadline command.
+     *
+     * @param tasks The ArrayList of tasks.
+     * @param ui The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws DukeException If there is an exception of type DukeException occurs.
+     * @throws IOException If there is an error while saving data to file.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         int indexOfByPrefix = commandArgs.indexOf(PREFIX_BY_DEADLINE);

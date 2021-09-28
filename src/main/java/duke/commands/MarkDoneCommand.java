@@ -23,6 +23,14 @@ public class MarkDoneCommand extends Command {
         this.commandArgs = commandArgs;
     }
 
+    /**
+     * Execute the mark done command.
+     *
+     * @param tasks The ArrayList of tasks.
+     * @param ui The component of Duke that deals with the interaction with the user.
+     * @param storage The component of Duke that deals with loading tasks from the file and saving tasks in the file.
+     * @throws IOException If there is an error while saving data to file.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         int taskIndex = Integer.parseInt(commandArgs.strip()) - 1;
