@@ -22,7 +22,7 @@ If you have trouble with keeping track of your todo list, deadlines, and events,
 ## 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `duke.jar` from [here]().
+2. Download the latest `duke.jar` from [here](https://github.com/nvbinh15/ip/releases/tag/A-Release).
 3. Copy the file to the folder you want to use as the _home folder_ for Duke.
 4. In the home folder for Duke, launch the `jar` file using the `java -jar duke.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see some think like this:
 
