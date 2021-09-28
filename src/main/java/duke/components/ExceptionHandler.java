@@ -1,14 +1,12 @@
 package duke.components;
 
-import duke.exceptions.DukeException;
-import duke.exceptions.EmptyTaskException;
-import duke.exceptions.IllegalDeadlineException;
-import duke.exceptions.IllegalEventException;
+import duke.exceptions.*;
 
 import static duke.constants.Messages.MESSAGE_INVALID_DEADLINE_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_INVALID_EVENT_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_EMPTY_TASK_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_DUKE_EXCEPTION;
+import static duke.constants.Messages.MESSAGE_DATE_TIME_EXCEPTION;
 import static duke.constants.Messages.MESSAGE_OTHER_EXCEPTION;
 
 /**
@@ -30,6 +28,8 @@ public class ExceptionHandler {
             ui.printMessage(MESSAGE_INVALID_EVENT_EXCEPTION);
         } else if (e instanceof EmptyTaskException) {
             ui.printMessage(MESSAGE_EMPTY_TASK_EXCEPTION);
+        } else if (e instanceof IllegalDateTimeException) {
+            ui.printMessage(MESSAGE_DATE_TIME_EXCEPTION);
         } else {
             ui.printMessage(MESSAGE_DUKE_EXCEPTION);
         }

@@ -4,6 +4,8 @@ import duke.components.Parser;
 import duke.components.Storage;
 import duke.components.TaskList;
 import duke.components.Ui;
+import duke.exceptions.DukeException;
+import duke.exceptions.IllegalDateTimeException;
 import duke.exceptions.IllegalEventException;
 import duke.task.Event;
 
@@ -29,14 +31,19 @@ public class AddEventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IllegalEventException, IOException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         int indexOfTimePrefix = commandArgs.indexOf(PREFIX_TIME_EVENT);
         if (indexOfTimePrefix == -1) {
             throw new IllegalEventException();
         }
         String description = commandArgs.substring(0, indexOfTimePrefix).trim();
         String timeInput = commandArgs.substring(indexOfTimePrefix + 3).trim();
-        String time = parser.formatDateTime(timeInput);
+        String time;
+        try {
+            time = parser.formatDateTime(timeInput);
+        } catch (IllegalDateTimeException e) {
+            throw new IllegalDateTimeException();
+        }
         Event toBeAddedEvent = new Event(description, time);
         tasks.addTask(toBeAddedEvent);
         ui.printConfirmAdd(toBeAddedEvent, tasks.getNumberOfTasks());

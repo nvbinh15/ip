@@ -11,6 +11,7 @@ import duke.commands.ListCommand;
 import duke.commands.MarkDoneCommand;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyTaskException;
+import duke.exceptions.IllegalDateTimeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -131,8 +132,12 @@ public class Parser {
      * @param string Date and time in string format.
      * @return A LocalDateTime object that represents the given date and time.
      */
-    public static LocalDateTime stringToDateTime(String string) {
-        return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+    public static LocalDateTime stringToDateTime(String string) throws IllegalDateTimeException {
+        try {
+            return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
+        } catch (Exception e) {
+            throw new IllegalDateTimeException();
+        }
     }
 
     /**
@@ -141,7 +146,7 @@ public class Parser {
      * @param dateTime A LocalDateTime object that represents the given date and time.
      * @return The string representation of the given LocalDateTime object.
      */
-    public static String dateTimeToString(LocalDateTime dateTime) {
+    public static String dateTimeToString(LocalDateTime dateTime) throws IllegalDateTimeException {
         return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
 
@@ -151,8 +156,12 @@ public class Parser {
      * @param rawDateTime The raw date time from user's input.
      * @return The string representation of other form of the given date time.
      */
-    public static String formatDateTime(String rawDateTime) {
-        return dateTimeToString(stringToDateTime(rawDateTime));
+    public static String formatDateTime(String rawDateTime) throws IllegalDateTimeException {
+        try {
+            return dateTimeToString(stringToDateTime(rawDateTime));
+        } catch (IllegalDateTimeException e) {
+            throw new IllegalDateTimeException();
+        }
     }
 
     /**
