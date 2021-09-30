@@ -24,6 +24,7 @@ public class AddToDoCommand extends Command {
     }
 
     /**
+     * Executes the add Todo command.
      *
      * @param tasks The ArrayList of tasks.
      * @param ui The component of Duke that deals with the interaction with the user.

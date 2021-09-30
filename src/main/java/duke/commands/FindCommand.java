@@ -6,6 +6,7 @@ import duke.components.Ui;
 import duke.task.Task;
 
 import static duke.constants.Messages.HORIZONTAL_LINE;
+import static duke.constants.Messages.LINE_PREFIX;
 import static duke.constants.Messages.MESSAGE_FOUND_MATCH;
 import static duke.constants.Messages.MESSAGE_NOT_FOUND_MATCH;
 
@@ -45,7 +46,7 @@ public class FindCommand extends Command {
                     hasMatch = true;
                 }
                 numberOfMatches++;
-                System.out.println("\t" + numberOfMatches + ". " + task);
+                System.out.println(LINE_PREFIX + numberOfMatches + ". " + task);
             }
         }
 

@@ -40,7 +40,8 @@ public class Storage {
     /**
      * Reads data that stored in the storage file.
      *
-     * @return The data stored in storage.
+     * @return The data stored in storage and an empty ArrayList of Task if there is something wrong
+     * with the data file.
      * @throws IOException If there are failed or interrupted I/O operations.
      */
     public static ArrayList<Task> readDataFromFile() throws IOException {
